@@ -1,12 +1,16 @@
-## 0.1.0 (24 Août 2013)
+### 0.1.1 (26 Août 2013)
+- **Bug**
+  - La fonction getNameOf retourne désormais le nom de la personne associé au numéro envoyé en paramètre
+
+## 0.1.0 (25 Août 2013)
 
 Première version de l'application flashsms
 
-- **Fonctionnalités:**
+- **Fonctionnalités**
   - Envoyer un sms
   - Parser au format json et afficher les sms reçus
   - Envoyer un sms PDU class 0
-  - Gérer un annuaire de contacts. Association nom avec numéro uniquement.
+  - Gérer un annuaire de contacts, association nom avec numéro uniquement
   - Gérer des listes de diffusions de sms
 - **Contraintes**
   - Utilisation du logiciel gammu

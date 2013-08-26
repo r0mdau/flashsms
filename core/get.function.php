@@ -23,9 +23,9 @@ function getMessages($attr = null){
 function getNameOf($number){
     global $db;
     $data = $db->table('directory')->find();
-    foreach($data as $name){
-        if(isset($name->number) AND $name->name == $number)
-            return $name->number;
+    foreach($data as $obj){
+        if(isset($obj->number) AND $obj->number == $number)
+            return $obj->name;
     }
     return $number;
 }

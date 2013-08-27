@@ -36,9 +36,6 @@ $send = receiver();
 	    <label>Message</label>
 	    <textarea rows="3" name="message" maxlength="160"><?=(isset($_SESSION['message']) ? $_SESSION['message'] : '')?></textarea>
 	    <br>
-		<pre>
-		    <?=var_dump($_SESSION)?>
-		</pre>
 	    <label class="checkbox">
 		    <input type="checkbox" name="flash" <?=(isset($_SESSION['flash']) ? 'checked="checked"' : '')?>> Flash
 	    </label>

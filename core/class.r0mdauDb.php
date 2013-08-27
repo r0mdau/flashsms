@@ -27,7 +27,6 @@
 			throw new Exception("Impossible de créer le fichier ".$this->file);
 		}catch(Exception $e){
 		    print $e->getMessage();
-		    return false;
 		}
             }else{
 		try{
@@ -40,7 +39,6 @@
 		    }else throw new Exception("Impossible d'ouvrir le fichier ".$this->file);
 		}catch(Exception $e){
 		    print $e->getMessage();
-		    return false;
 		}              
             }            
         }
@@ -55,8 +53,8 @@
                 return true;
             }catch(Exception $e){
                 print $e->getMessage();
-                return false;
             }
+            return false;
         }
         
         public function find($array = NULL){            
@@ -126,7 +124,6 @@
 		throw new Exception("Le fichier n'a pas pu être vidé");
 	    }catch(Exception $e){
                 print $e->getMessage();
-                return false;
 	    }
 	}
 	 

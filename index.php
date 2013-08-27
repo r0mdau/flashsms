@@ -34,10 +34,13 @@ $send = receiver();
 		   data-source='<?=$send?>'>
 	    <br>
 	    <label>Message</label>
-	    <textarea rows="3" name="message" maxlength="160"><?=(isset($_SESSION['flash']) ? $_SESSION['message'] : '')?></textarea>
+	    <textarea rows="3" name="message" maxlength="160"><?=(isset($_SESSION['message']) ? $_SESSION['message'] : '')?></textarea>
 	    <br>
+		<pre>
+		    <?=var_dump($_SESSION)?>
+		</pre>
 	    <label class="checkbox">
-		    <input type="checkbox" name="flash" <?=(isset($_SESSION['flash']) AND $_SESSION['flash'] ? 'checked="checked"' : '')?>> Flash
+		    <input type="checkbox" name="flash" <?=(isset($_SESSION['flash']) ? 'checked="checked"' : '')?>> Flash
 	    </label>
 	    <br>
 	    <input class="btn" type="submit" value="Envoyer" data-loading-text="En cours d'envoi..." onclick="$(this).button('loading');">

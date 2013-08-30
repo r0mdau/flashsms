@@ -12,7 +12,7 @@ $send = receiver();
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <title>Flashsms r0mdau</title>
     <meta charset="utf-8">

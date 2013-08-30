@@ -1,3 +1,8 @@
+## 0.2.0 (28 Août 2013)
+- **Fonctionnalité**
+  - Lorsqu'un champ n'est pas bien renseigné dans le formulaire d'envoi, les informations correctement
+    saisies sont enregistrées en session pour les conserver dans le formulaire
+
 ### 0.1.1 (26 Août 2013)
 - **Bug**
   - La fonction getNameOf retourne désormais le nom de la personne associé au numéro envoyé en paramètre

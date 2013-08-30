@@ -20,11 +20,8 @@ function form(&$err){
             }
             $_POST['number'] = str_replace(' ', '', $_POST['number']);
             exec('echo "'.$_POST['message'].'" | gammu --sendsms TEXT '.$_POST['number'].(isset($_POST['flash']) ? ' -flash' : ''), $output, $err->out);
-	    if($err->out != 0){
-		$_SESSION['user'] = getNameOf($_POST['number']);
-		$_SESSION['message'] = $_POST['message'];
-		if(isset($_POST['flash'])) $_SESSION['flash'] = true;
-	    }
+	    if($err->out != 0)
+		setSessionValues();
         }        
     }else if(saveContact()){
         $_POST['number'] = str_replace(' ', '', $_POST['number']);
@@ -47,6 +44,7 @@ function form(&$err){
             $err->info['number'] = 'Numéro vide ! ';
         if(empty($_POST['message']))
             $err->info['message'] = 'Message vide !';
+	setSessionValues();
     }else if(errorContact()){
         if(empty($_POST['number']))
             $err->warn['number'] = 'Numéro vide ! ';
@@ -58,4 +56,10 @@ function form(&$err){
         if(empty($_POST['number1']))
             $err->listoff['number'] = 'Vous devez renseigner 1 numéro minimum !';
     }
+}
+
+function formSetSessionValues(){
+    $_SESSION['user'] = getNameOf($_POST['number']);
+    $_SESSION['message'] = $_POST['message'];
+    if(isset($_POST['flash'])) $_SESSION['flash'] = true;
 }

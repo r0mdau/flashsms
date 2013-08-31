@@ -125,8 +125,8 @@ $send = receiver();
 	}, 1000);
     }
 
-    function deletesms(number){
-	$.ajax({url : "ajax/deletesms.php?number="+number})
+    function deleteMessage(number){
+	$.ajax({url : "ajax/deleteMessage.php?number="+number})
 	.done(function(data){
 	    $('#messages').after(data);
 	    getMessages();

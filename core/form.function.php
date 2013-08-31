@@ -21,7 +21,7 @@ function form(&$err){
             $_POST['number'] = str_replace(' ', '', $_POST['number']);
             exec('echo "'.$_POST['message'].'" | gammu --sendsms TEXT '.$_POST['number'].(isset($_POST['flash']) ? ' -flash' : ''), $output, $err->out);
 	    if($err->out != 0)
-		setSessionValues();
+		formSetSessionValues();
         }        
     }else if(saveContact()){
         $_POST['number'] = str_replace(' ', '', $_POST['number']);
@@ -44,7 +44,7 @@ function form(&$err){
             $err->info['number'] = 'Numéro vide ! ';
         if(empty($_POST['message']))
             $err->info['message'] = 'Message vide !';
-	setSessionValues();
+	    formSetSessionValues();
     }else if(errorContact()){
         if(empty($_POST['number']))
             $err->warn['number'] = 'Numéro vide ! ';

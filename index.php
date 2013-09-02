@@ -2,7 +2,7 @@
 session_start();
 include ('autoload.php');
 
-$db = new r0mdauDb('datas');
+$db = new r0mdauDb(_DIR_Database_);
 
 $err = new Error();
 form($err);

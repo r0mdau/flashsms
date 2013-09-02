@@ -1,14 +1,8 @@
 <?php
-function getMessages($attr = null){
+function getMessages($attr = NULL){
     global $db;
     $html = '';
-    if(is_null($attr))
-        $datas = $db->table('messages')->find();
-    else if(is_array($attr))
-        $datas = $db->table('messages')->find($attr);
-    else
-	return $html;
-    
+    $datas = $db->table('messages')->find($attr);
     $x = count($datas);
     for($x = $x - 1; $x >= 0; $x--){
 	$message = $datas[$x];

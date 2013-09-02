@@ -1,6 +1,8 @@
-## 0.3.0 (unfixed)
+# 1.0.0 (unfixed)
 - **Nouveautés
   - Autoloader retravaillé, tous les fichiers et ceux des sous répertoires du dossier "core" sont inclus au projet.
+  - Création d'un fichier de configuration `settings.php` permettant de définir des variables superglobales.
+  - Bootstrap d'initialisation des variables de l'application
 
 ## 0.2.0 (28 Août 2013)
 - **Fonctionnalité**

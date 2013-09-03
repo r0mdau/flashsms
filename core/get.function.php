@@ -8,7 +8,7 @@ function getMessages($attr = NULL){
 	$message = $datas[$x];
 	if(isset($message->name)){
 	    $html.= '<blockquote>';
-	    $html .= '<p>'.$message->name.' : '.$message->message.'<i class="pull-right icon-remove" style="cursor:pointer" onclick="deletesms(\''.$message->_rid.'\')"></i></p>';
+	    $html .= '<p>'.$message->name.' : '.$message->message.'<i class="pull-right icon-remove" style="cursor:pointer" onclick="deleteMessage(\''.$message->_rid.'\')"></i></p>';
 	    $html .= '<small>'.$message->date.'</small>';
 	    $html .= '</blockquote><hr>';
 	}

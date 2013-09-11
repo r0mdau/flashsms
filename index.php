@@ -2,13 +2,7 @@
 session_start();
 include ('autoload.php');
 
-$db = new r0mdauDb('datas');
-
-$err = new Error();
-form($err);
-$var = directory();
-$lists = lists();
-$send = receiver();
+Bootstrap::init($db, $err, $typehead);
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +25,7 @@ $send = receiver();
 		   value="<?=(isset($_SESSION['user']) ? $_SESSION['user'] : '')?>" 
 		   data-provide="typeahead"
 		   data-items="4"
-		   data-source='<?=$send?>'>
+		   data-source='<?=$typehead['send']?>'>
 	    <br>
 	    <label>Message</label>
 	    <textarea rows="3" name="message" maxlength="160"><?=(isset($_SESSION['message']) ? $_SESSION['message'] : '')?></textarea>
@@ -53,7 +47,7 @@ $send = receiver();
 	    <input type="text" name="name"	autocomplete="off"
 		    data-provide="typeahead"
 		    data-items="4"
-		data-source='<?=$var?>'>
+		data-source='<?=$typehead['directory']?>'>
 	    <label>Numero</label>
 	    <input type="text" name="number" placeholder="+33 6 xx xx xx xx">        
 	    <br><br>
@@ -70,13 +64,13 @@ $send = receiver();
 	    <input type="text" name="list"	autocomplete="off"
 		    data-provide="typeahead"
 		    data-items="4"
-		data-source='<?=$lists?>'>
+		data-source='<?=$typehead['lists']?>'>
 	    <label>Numero / Nom personne</label>
 	    <input type="text" name="number1" autocomplete="off"
 		    placeholder="+33 6 xx xx xx xx"
 		    data-provide="typeahead"
 		    data-items="4"
-		data-source='<?=$var?>'>
+		data-source='<?=$typehead['directory']?>'>
 	    <br><br>
 	    <input id="btnpos" class="btn btn-primary" type="submit" value="Enregistrer" data-loading-text="Enregistrement..." onclick="$(this).button('loading');">
 	    <button id="btnlist" type="button" class="btn btn-inverse">+</button>
@@ -109,7 +103,7 @@ $send = receiver();
     $(document).ready(function(){
 	$('#btnlist').click(function(){
 	    numero++;
-	    $('#btnpos').before('<input type="text" name="number'+numero+'" autocomplete="off" placeholder="+33 6 xx xx xx xx" data-provide="typeahead" data-items="4" data-source=\'<?=$var?>\'><br><br>');
+	    $('#btnpos').before('<input type="text" name="number'+numero+'" autocomplete="off" placeholder="+33 6 xx xx xx xx" data-provide="typeahead" data-items="4" data-source=\'<?=$typehead['directory']?>\'><br><br>');
 	});
 	getMessages();
     });

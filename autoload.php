@@ -12,7 +12,7 @@
         }
     }
 
-    function autoload($dir){
+    function autoload(){
         require_once(__DIR__.'/settings.php');
         loadDir(__DIR__.'/core/');
     }

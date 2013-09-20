@@ -1,6 +1,6 @@
 <?php
 require_once('../autoload.php');
-$db = new r0mdauDb('../datas');
+$db = new r0mdauDb(_DIR_Database_);
 echo getMessagesHere();
 
 function getMessagesHere(){

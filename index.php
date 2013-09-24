@@ -94,7 +94,8 @@ Bootstrap::init($db, $err, $typehead);
 	</p>
     </div>
 </div>
-<script src="lib/jquery/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>window.jQuery || document.write('<script src="lib/jquery/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="lib/bootstrap/js/bootstrap-alert.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap-button.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap-typeahead.min.js"></script>

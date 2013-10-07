@@ -4,12 +4,13 @@ function form(&$err){
     if(isset($_POST)) global $_POST; else return;        
     global $db;
     if(sending()){
-	$_SESSION = array();
+		$_SESSION = array();
+		if(isset($_POST['flash'])) $flash = ' -flash'; else $flash = '';
         if($list = getlist($_POST['number'])){
             foreach($list->numbers as $no){
-                exec('echo "'.$_POST['message'].'" | gammu --sendsms TEXT '.$no.(isset($_POST['flash']) ? ' -flash' : ''), $output, $err->out);
-		if($err->out != 0)
-		    $err->numberInError[] = getNameOf($no);
+				$err->out = Gammu::infiniteSend($_POST['message'], $no, $flash);
+				if($err->out != 0)
+					$err->numberInError[] = getNameOf($no);
                 sleep(5);
             }
         }else{
@@ -19,9 +20,9 @@ function form(&$err){
                     $_POST['number'] = $user->number;
             }
             $_POST['number'] = str_replace(' ', '', $_POST['number']);
-            exec('echo "'.$_POST['message'].'" | gammu --sendsms TEXT '.$_POST['number'].(isset($_POST['flash']) ? ' -flash' : ''), $output, $err->out);
-	    if($err->out != 0)
-		formSetSessionValues();
+			$err->out = Gammu::send($_POST['message'], $_POST['number'], $flash);
+			if($err->out != 0)
+				formSetSessionValues();
         }        
     }else if(saveContact()){
         $_POST['number'] = str_replace(' ', '', $_POST['number']);

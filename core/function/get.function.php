@@ -27,6 +27,17 @@ function getNameOf($number){
     return $number;
 }
 
+function getNumberOfName($name){
+	global $db;
+	$data = $db->table('directory')->find();
+    foreach($data as $obj){
+  		if(isset($obj->name) AND $obj->name == $name)
+        	return $obj->number;
+    }
+    return $number;
+}
+
+
 function getlist($var){
     global $db;
     $data = $db->table('lists')->find();

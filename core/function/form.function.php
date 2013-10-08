@@ -31,7 +31,7 @@ function form(&$err){
         $i = 1;
         while(isset($_POST['number'.$i])){
             if(!empty($_POST['number'.$i])){
-                if($number = getNameOf($_POST['number'.$i]))
+                if($number = getNumberOfName($_POST['number'.$i]))
                     $tab['numbers'][] = $number;                    
                 else
                     $tab['numbers'][] = $_POST['number'.$i];

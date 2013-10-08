@@ -11,7 +11,6 @@ function form(&$err){
 				$err->out = Gammu::infiniteSend($_POST['message'], $no, $flash);
 				if($err->out != 0)
 					$err->numberInError[] = getNameOf($no);
-                sleep(5);
             }
         }else{
             $data = $db->table('directory')->find();

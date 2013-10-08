@@ -8,6 +8,7 @@
         public static function infiniteSend($str, $number, $flash){
             do{
                 $var = self::send($str, $number, $flash);
+				sleep(5);
             }while($var != 0);
             return 0;
         }

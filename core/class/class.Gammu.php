@@ -1,7 +1,8 @@
 <?php
     class Gammu{
         public static function send($str, $number, $flash){
-            exec('echo "'.$str.'" | gammu --sendsms TEXT '.$number.$flash, $output, $res);
+			$numberOfSms = (int) (strlen($str) / 160);
+            exec('echo "'.$str.'" | gammu --sendsms TEXT '.$number.$flash.' -autolen '.$numberOfSms, $output, $res);
             return $res;
         }
         

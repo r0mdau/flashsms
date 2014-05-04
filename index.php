@@ -28,7 +28,7 @@ Bootstrap::init($db, $err, $typehead);
 		   data-source='<?=$typehead['send']?>'>
 	    <br>
 	    <label>Message</label>
-	    <textarea rows="3" name="message" maxlength="160"><?=(isset($_SESSION['message']) ? $_SESSION['message'] : '')?></textarea>
+	    <textarea rows="3" name="message"><?=(isset($_SESSION['message']) ? $_SESSION['message'] : '')?></textarea>
 	    <br>
 	    <label class="checkbox">
 		    <input type="checkbox" name="flash" <?=(isset($_SESSION['flash']) ? 'checked="checked"' : '')?>> Flash

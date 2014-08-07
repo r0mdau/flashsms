@@ -117,7 +117,7 @@ Bootstrap::init($db, $err, $typehead);
 		    $('#messages').html('');
 	            $('#messages').append('<h3>Messages reçus</h3><hr>'+data);
 		});
-	}, 1000);
+	}, 10000);
     }
 
     function deleteMessage(number){

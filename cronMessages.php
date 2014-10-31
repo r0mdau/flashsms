@@ -1,47 +1,64 @@
 <?php
-include(__DIR__.'/autoload.php');
+include(__DIR__ . '/autoload.php');
+
 exec("gammu --getallsms", $result, $status);
-if($status != 0) exit;
+if ($status != 0) {
+    exit;
+}
+
 exec("gammu --deleteallsms 1");
+
+$db = new r0mdauDb(__DIR__ . '/datas');
+
 $i = 0;
-$db = new r0mdauDb(__DIR__.'/datas');
-$tab = array();
-foreach($result as $line){
-	if($line == "SMS message"){
-		$y = 0;
-		if(strpos($result[$i+3], "Class") !== false) $y = 1;
-		$tab[] = array	("name" => getNameOfNumber(getNumberOf($result[$i+4+$y])),
-				"number" => getNumberOf($result[$i+4+$y]),
-				"message" => $result[$i+7+$y],
-				"date" => getDateOf($result[$i+2])
-				);
-	}
-	$i++;
+$messages = array();
+foreach ($result as $line) {
+    if ($line == "SMS message") {
+        $y = 0;
+        if (strpos($result[$i + 3], "Class") !== false) {
+            $y = 1;
+        }
+
+        $messages[] = array(
+            "name" => getNameOfNumber(getNumberOf($result[$i + 4 + $y])),
+            "number" => getNumberOf($result[$i + 4 + $y]),
+            "message" => $result[$i + 7 + $y],
+            "date" => getDateOf($result[$i + 2])
+        );
+    }
+    $i++;
 }
 
-foreach($tab as $arr)
-if(isset($arr['number']) AND !empty($arr['number']))
-	$db->table('messages')->insert($arr);
-
-function reverseArray($tab){
-	$arr = array();
-	for($i = count($tab) - 1; $i >= 0 ; $i--)
-		$arr[] = $tab[$i];
-	return $arr;
+foreach ($messages as $message) {
+    if (isset($message['number']) AND !empty($message['number'])) {
+        $db->table('messages')->insert($message);
+    }
 }
 
-function getNameOfNumber($number){
-	global $db;
-	$result = $db->table('directory')->find1(array("number" => $number));
-	return isset($result->name) ? $result->name : $number;
+function reverseArray($tab)
+{
+    $messages = array();
+    for ($i = count($tab) - 1; $i >= 0; $i--) {
+        $messages[] = $tab[$i];
+    }
+    return $messages;
 }
 
-function getNumberOf($str){
-	preg_match('/.+"(.+)".*/', $str, $matches);
-        return isset($matches[1]) ? $matches[1] : $str;
+function getNameOfNumber($number)
+{
+    global $db;
+    $result = $db->table('directory')->find1(array("number" => $number));
+    return isset($result->name) ? $result->name : $number;
 }
 
-function getDateOf($str){
-	preg_match('/.+:\ (.+)\ \ \+.+/', $str, $matches);
-	return isset($matches[1]) ? $matches[1] : $str;
+function getNumberOf($str)
+{
+    preg_match('/.+"(.+)".*/', $str, $matches);
+    return isset($matches[1]) ? $matches[1] : $str;
+}
+
+function getDateOf($str)
+{
+    preg_match('/.+:\ (.+)\ \ \+.+/', $str, $matches);
+    return isset($matches[1]) ? $matches[1] : $str;
 }

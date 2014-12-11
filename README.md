@@ -34,14 +34,16 @@ Application hébergée sur un serveur web tel Apache2 ou Nginx. Avec cette appli
  * logfile = /var/log/gammu.log
  * logformat = textalldate
 * Lancer la commande : `comgt -d /dev/ttyUSB1` Vous devrez ensuite saisir le code PIN de votre carte SIM.
-* Donner les droits à l'utilisateur d'Apache ou Nginx (www-data généralement) d'exécuter des commandes gammu. Pour faire des tests : `su www-data` et ensuite `echo "mon message" | gammu --sendsms TEXT +33654545454`
+* Si cette commande ne donne aucun résultat c'est que votre clé usb n'est certainement pas reconnue par votre OS. Il faut certainement faire un `service udev stop` puis `service udev start`. La commande `lsusb` permet de savoir si le périphérique est correctement reconnu.
+* Donner les droits à l'utilisateur d'Apache ou Nginx (www-data généralement) d'exécuter des commandes gammu. Pour faire des tests : `su www-data` et ensuite `echo "mon message" | gammu --sendsms TEXT +33654545454`.
+ * Action : tapez la commande `visudo` et ajouter la ligne suivante en fin de fichier : `www-data ALL=NOPASSWD: /usr/bin/gammu*`.
 * Cloner le repo : `git clone http://git.romaindauby.fr/flashsms`
 * Se placer dans le répertoire flashsms : `cd flashsms`
 * Créer le dossier datas : `mkdir datas` puis donner les droits de lecture et d'écriture à l'utilisateur www-data
 * Faire pointer votre hôte virtuel vers le dossier flashsms
 * Exécuter une tâche cron : `crontab -e`
  * \* * * * * php -f <path>/flashsms/cronMessages.php
-Une fois toutes ces étapes correctement réalisées, vous pouvez accéder à l'application depuis votre navigateur.
+Une fois toutes ces étapes correctement réalisées, vous pouvez accéder à l'application depuis votre navigateur et recevoir/envoyer en temps réel des sms.
 
 ## Bug tracker
 

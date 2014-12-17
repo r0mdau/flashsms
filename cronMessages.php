@@ -2,11 +2,11 @@
 include(__DIR__ . '/autoload.php');
 
 exec("gammu --getallsms", $result, $status);
-if ($status != 0) {
+if ($status != 0 || $result[2] == "0 SMS parts in 0 SMS sequences") {
     exit;
 }
 
-exec("gammu --deleteallsms 1");
+exec("gammu --deleteallsms 3");
 
 $db = new r0mdauDb(__DIR__ . '/datas');
 
